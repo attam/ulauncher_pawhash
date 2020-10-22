@@ -9,11 +9,15 @@ By default, this script generates a password and loads into the active clipboard
 - digits only
 - no special characters allowed
 - change default master passowrd or set custom master password in script
+- bump [n] (appends ':n' to the site paramater) 
+
+Note: I am a hobbyist programmer, and created this script to simplify my password management workflow based on my own needs. If anyone has any suggestions for improvement or has technical difficulties in making this work, I would love to hear from you, but my abilities and resources are limited. I am posting this for anyone who may be interested in modifying or using this script which I find to be quite useful to regenerate my existing passwords, or creatining new passwords on-the-fly.
 
 Requirements:
 - linux-based operating system
-- xclip (clipboard cli tool used to copy password into clipboard buffer)
-- node
+- xclip (https://github.com/astrand/xclip; clipboard cli tool used to copy password into clipboard buffer)
+- node.js (https://nodejs.org/en/download/)
+- minimist module for parsing commandline options (see: https://www.npmjs.com/package/minimist; once nodejs is installed, type: npm i minimist to install)
 
 Setup:
 - open Ulauncher and go to settings (gear icon on right side of input box)
@@ -22,10 +26,14 @@ Setup:
 - paste the following code into the "Query or Script" textbox:
 
 #!/usr/bin/bash
-node ~/scripts/pawhash-master/passhash2.js $@ | xclip -selection c
+node [path to passhash.js] $@ | xclip -selection c
 
 To run in Ulauncher, type:
 hap <site parameter> <options>
+eg, hap google -b2mpl10 will generate a password using a master password and site password of 'default' and 'google', with the following criteria:
+  - bump 2 (ie, site parameter used is 'google:2')
+  - mixed case
+  - punctuation
+  - length: 10 characters
   
 The script is based on hashapass.com and the pawhash git repo (https://github.com/tornewuff/pawhash)
-To use with Ulauncher, you will need to copy _ to the /usr/bin directory, and ensure executable permissions are set.
