@@ -61,12 +61,16 @@
 *	bump {b}
 *
 * - calling from command line using nodeJS:
-*	> node passhash2.js test -dpm -key newkey -l10 [yields a password of length 10 using parameter 'test', key 'newkey', requiring digits, puncutation and mixed case]
+*	> node passhash.js test -dpm --key newkey -l10 [yields a password of length 10 using parameter 'test', key 'newkey', requiring digits, puncutation and mixed case]
 * 
 *
 * used in combination with hap.sh and ulauncher as a shortcut bash script to generate passwords 'on-the-fly'
 * see ulauncher shortcut hap for details
 */
+
+// note to self: need to update instructions for installing minimist - must be installed into node_modules subfolder of root folder (ie, ulauncher_pawhash/node_modules/)
+// to do this: mkdir -p node_modules/minimist, followed by: cd ~/ualuncher_pawhash/node_modules and then: npm i install minimist
+// (will try to make install process more user-friendly, less cumbersome in the future)
 
 var minimist = require('./node_modules/minimist')
 var args = minimist(process.argv.slice(2), {
